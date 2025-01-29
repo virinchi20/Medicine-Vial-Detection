@@ -1,0 +1,49 @@
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: tensor([66.])
+conf: tensor([0.8365])
+data: tensor([[8.0315e+00, 1.9464e+00, 1.9930e+03, 4.9198e+02, 8.3647e-01, 6.6000e+01]])
+id: None
+is_track: False
+orig_shape: (4032, 3024)
+shape: torch.Size([1, 6])
+xywh: tensor([[1000.4962,  246.9649, 1984.9294,  490.0369]])
+xywhn: tensor([[0.3309, 0.0613, 0.6564, 0.1215]])
+xyxy: tensor([[8.0315e+00, 1.9464e+00, 1.9930e+03, 4.9198e+02]])
+xyxyn: tensor([[2.6559e-03, 4.8275e-04, 6.5905e-01, 1.2202e-01]])
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: tensor([39.])
+conf: tensor([0.7955])
+data: tensor([[9.1571e+02, 2.0205e+03, 2.0251e+03, 2.5929e+03, 7.9546e-01, 3.9000e+01]])
+id: None
+is_track: False
+orig_shape: (4032, 3024)
+shape: torch.Size([1, 6])
+xywh: tensor([[1470.4150, 2306.6743, 1109.4164,  572.4082]])
+xywhn: tensor([[0.4862, 0.5721, 0.3669, 0.1420]])
+xyxy: tensor([[ 915.7069, 2020.4702, 2025.1233, 2592.8784]])
+xyxyn: tensor([[0.3028, 0.5011, 0.6697, 0.6431]])
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: tensor([63.])
+conf: tensor([0.2874])
+data: tensor([[1.2070e+01, 3.0994e+00, 1.9988e+03, 4.9170e+02, 2.8744e-01, 6.3000e+01]])
+id: None
+is_track: False
+orig_shape: (4032, 3024)
+shape: torch.Size([1, 6])
+xywh: tensor([[1005.4294,  247.3974, 1986.7185,  488.5959]])
+xywhn: tensor([[0.3325, 0.0614, 0.6570, 0.1212]])
+xyxy: tensor([[  12.0701,    3.0994, 1998.7887,  491.6953]])
+xyxyn: tensor([[0.0040, 0.0008, 0.6610, 0.1219]])
+
+
+
+
+tensor([66.])
+tensor([[0.3309, 0.0613, 0.6564, 0.1215]])
+tensor([39.])
+tensor([[0.4862, 0.5721, 0.3669, 0.1420]])
+tensor([63.])
+tensor([[0.3325, 0.0614, 0.6570, 0.1212]])
