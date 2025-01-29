@@ -4,14 +4,15 @@ import os
 import time
 
 # Load the YOLO model (update the path to your model if necessary)
-model = YOLO('yolov8x.pt')
+model = YOLO('yolo11n.pt')
 #model.to('cpu')
 
 # Open the webcam using DirectShow backend
-video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+video = cv2.VideoCapture(0)
 
 
-data_path = "C:/Users/CAE-USER/Desktop/virinchi/Medicine vial Detection/data/"
+output_dir = 'data'
+os.makedirs(output_dir, exist_ok=True)
 
 if not video.isOpened():
     print("Error: Could not open video.")
@@ -36,11 +37,10 @@ while True:
 
             #saving the data (image)
             img_name = str(data_count)
-            file_path = os.path.join(data_path,img_name)
-            cv2.imwrite(file_path+".jpg", frame)
+            cv2.imwrite(os.path.join(output_dir, f'{img_name}.jpg'), frame)
 
             #saving the annotated data file
-            with open(file_path+".txt", 'w') as file:
+            with open(os.path.join(output_dir, f'{img_name}.txt'), 'w') as file:
                 #for r in results:
                     # r.boxes.cls[0] = 0 is person class for example
                     #if int(r.boxes.cls[0]) == 39:
