@@ -8,7 +8,7 @@ model = YOLO('yolo11n.pt')
 #model.to('cpu')
 
 # Open the webcam using DirectShow backend
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 
 
 output_dir = 'data'

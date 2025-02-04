@@ -1,4 +1,4 @@
 yolov8x-seg.pt
-yolov8x.pt
+yolo*.pt
 vial_images/
 data/
