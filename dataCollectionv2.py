@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 
 class BottleDataCollector:
-    def __init__(self, model_path='yolo11n.pt', camera_id=1, output_dir='data'):
+    def __init__(self, model_path='yolov8x.pt', camera_id=0, output_dir='data'):
         """
         Initialize the bottle data collector
         """
@@ -73,8 +73,9 @@ class BottleDataCollector:
                 for r in results:
                     # Check if bottle detected (class 39 in COCO dataset)
                     if len(r.boxes) > 0 and int(r.boxes.cls[0]) == 39:
+                        print("bottle found")
                         # Get bounding box coordinates
-                        xywhn = r.boxes.xywhn.numpy()
+                        xywhn = r.boxes.xywhn.cpu().numpy()
                         
                         # Validate bounding box
                         if not all(self.validate_bbox(bbox) for bbox in xywhn):
@@ -118,8 +119,8 @@ class BottleDataCollector:
 if __name__ == "__main__":
     try:
         collector = BottleDataCollector(
-            model_path='yolo11n.pt',  # Update with your model path
-            camera_id=1,              # Update with your camera ID
+            model_path='yolov8x.pt',  # Update with your model path
+            camera_id=0,              # Update with your camera ID
             output_dir='bottle_data'  # Update with your preferred output directory
         )
         collector.collect_data()

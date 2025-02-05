@@ -10,8 +10,9 @@ model = YOLO('yolov8x.pt')
 # Open the webcam using DirectShow backend
 video = cv2.VideoCapture(0)
 
+classifier = 0
 
-output_dir = 'data'
+output_dir = 'data/' + str(classifier) + "/"
 os.makedirs(output_dir, exist_ok=True)
 
 if not video.isOpened():
