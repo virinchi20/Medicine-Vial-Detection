@@ -12,10 +12,11 @@ print(results)
 print("=============================================================")
 for box in results[0].boxes:
     #print(box)
-    print(int(box.cls.numpy()[0])==39)
+    #print(int(box.cls.numpy()[0])==39)
+    print(int(box.cls.cpu().numpy()[0]) == 39)
     print(box.xywhn)
     #value = box.xywhn.item()
     #print(value[0])
-    print(box.xywhn.numpy())
+    print(box.xywhn.cpu().numpy())
 
 

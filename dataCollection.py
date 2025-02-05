@@ -4,11 +4,11 @@ import os
 import time
 
 # Load the YOLO model (update the path to your model if necessary)
-model = YOLO('yolo11n.pt')
+model = YOLO('yolov8x.pt')
 #model.to('cpu')
 
 # Open the webcam using DirectShow backend
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture(0)
 
 
 output_dir = 'data'
@@ -33,7 +33,11 @@ while True:
     #print(results)
 
     for r in results:
-        if int(r.boxes.cls[0]) == 39:
+        #if int(r.boxes.cls[0]) == 39:
+        if int(r.boxes.cls.cpu().numpy()[0]) == 39:
+        #int(box.cls.cpu().numpy()[0]) == 39
+        
+            print("bottle found")
 
             #saving the data (image)
             img_name = str(data_count)
@@ -41,22 +45,9 @@ while True:
 
             #saving the annotated data file
             with open(os.path.join(output_dir, f'{img_name}.txt'), 'w') as file:
-                #for r in results:
-                    # r.boxes.cls[0] = 0 is person class for example
-                    #if int(r.boxes.cls[0]) == 39:
-                        #saving the data (image)
-                        #img_name = str(data_count)
-                        #file_path = os.path.join(data_path,img_name)
-                        #cv2.imwrite(file_path+".jpg", frame)
-
-                xywhn = r.boxes.xywhn.numpy()
-                print(r.boxes.xywhn.numpy())
+                xywhn = r.boxes.xywhn.cpu().numpy()
+                print(r.boxes.xywhn.cpu().numpy())
                 file.write("0 " + str(xywhn[0][0]) + " " + str(xywhn[0][1]) + " " + str(xywhn[0][2]) + " " + str(xywhn[0][3]))
-                        #file.write("0 "+ r.boxes.xywhn[0][0] + " " + r.boxes.xywhn[0][1] + " " + r.boxes.xywhn[0][2] + " " + r.boxes.xywhn[0][3])
-                        #file.write(str(xywhn[0][0]))
-                        #xywhn_values = " ".join(str(r.boxes.xywhn[0]))
-                        #file.write(xywhn_values)
-
 
     # Draw the detection results on the frame
     #annotated_frame = results.render()[0]
