@@ -4,9 +4,10 @@ import os
 import json
 import numpy as np
 from datetime import datetime
+import sys
 
 class BottleDataCollector:
-    def __init__(self, model_path='yolov8x.pt', camera_id=0, output_dir='data'):
+    def __init__(self, model_path='yolov8x.pt', camera_id=0, output_dir='data', classifier='0' ):
         """
         Initialize the bottle data collector
         """
@@ -16,8 +17,8 @@ class BottleDataCollector:
         self.data_count = 0
         
         # Create output directories
-        self.image_dir = os.path.join(output_dir, 'images')
-        self.label_dir = os.path.join(output_dir, 'labels')
+        self.image_dir = os.path.join(output_dir, classifier)
+        self.label_dir = os.path.join(output_dir, classifier)
         self.metadata_dir = os.path.join(output_dir, 'metadata')
         
         os.makedirs(self.image_dir, exist_ok=True)
@@ -121,7 +122,8 @@ if __name__ == "__main__":
         collector = BottleDataCollector(
             model_path='yolov8x.pt',  # Update with your model path
             camera_id=0,              # Update with your camera ID
-            output_dir='bottle_data'  # Update with your preferred output directory
+            output_dir='data',  # Update with your preferred output directory
+            classifier=sys.argv[1]
         )
         collector.collect_data()
     except Exception as e:
