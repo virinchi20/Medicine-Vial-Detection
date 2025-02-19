@@ -1,8 +1,11 @@
 from ultralytics import YOLO
 import os
+import sys
 
 model = YOLO("yolo11n.pt")
 
-data = "C:/Users/CAE-USER/Desktop/virinchi/Medicine-Vial-Detection/final_data/data.yaml"
 
-results = model.train(data=data, epochs=10, imgsz=640, batch=1024)
+data = os.path.join(os.getcwd(), "final_data/data.yaml")
+
+
+results = model.train(data=data, epochs=10, imgsz=640, device="mps", save=True).
