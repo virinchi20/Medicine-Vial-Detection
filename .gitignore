@@ -4,3 +4,7 @@ vial_images/
 data/
 bottle_data/
 final_data/
+input_videos/
+new_data/
+runs/
+trained_models_from_colab/
