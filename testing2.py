@@ -14,13 +14,13 @@ def displayText(text):
     
 
 #object_detection_model = YOLO("trained_models_from_colab/models/best3.pt")
-object_detection_model = YOLO("yolo11n.pt")
-classification_model = YOLO("trained_models_from_colab/models/classify/best.pt")
+object_detection_model = YOLO("models/detection/best.pt")
+classification_model = YOLO("models/classification/best.pt")
 
 video = cv2.VideoCapture(0)
 
 if not video.isOpened():
-    print("Error: Could not open vidio")
+    print("Error: Could not open video")
     exit()
 
 while True:
@@ -30,10 +30,12 @@ while True:
         print("Error: Failed to capture frame")
         break
 
-    
+    #image_resized = cv2.resize(frame, (640, 640))
+
     results = object_detection_model.predict(frame)
     for r in results:
-        if int(r.boxes.cls.cpu().numpy()[0]) == 39:
+        if int(r.boxes.cls.cpu().numpy()[0]) == 0:
+            print("bottle")
             image = frame
             height, width, _ = image.shape
             xywhn = r.boxes.xywhn.cpu().numpy()
@@ -54,6 +56,10 @@ while True:
                 elif r.probs.top1 == 1:
                     print("Detected Midazolm")
                     displayText("Midazolem")
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+                elif r.probs.top1 == 2:
+                    print("Detected Adenosin")
+                    displayText("Adenosin")
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
                 else:
                     pass
